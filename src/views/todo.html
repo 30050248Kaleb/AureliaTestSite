@@ -1,0 +1,25 @@
+<template>
+  <h2>Todo List</h2>
+  <p>Enter something to add to your todo list below:</p>
+
+  <form submit.trigger="addTodo()">
+    <input type="text" placeholder="Your todo goes here" value.bind="todoDescription" />
+    <button type="submit" class="btn btn-primary" disabled.bind="!todoDescription">Add Todo</button>
+  </form>
+
+  <div class="card"  style="width: 50%;">
+    <div class="card-body">
+      <h3 class="card-title">My List</h3>
+      <ul>
+        <li repeat.for="todo of todos">
+          <div class="form-check my-3">
+          <input type="checkbox" class="form-check-input" checked.bind="todo.done" />
+          <label class="form-check-label" style="text-decoration: ${todo.done ? 'line-through' : 'none'}">
+            ${todo.description}
+          </label>
+          <button type="button" class="btn btn-outline-danger btn-sm float-end" click.trigger="removeTodo(todo)">Remove</button></div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</template>
